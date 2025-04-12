@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INIo | Game Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star, .star-layer2, .star-layer3 {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .star {
+      animation: twinkle 2s infinite ease-in-out, drift 60s linear infinite;
+    }
+
+    .star-layer2 {
+      opacity: 0.5;
+      animation: drift 90s linear infinite;
+    }
+
+    .star-layer3 {
+      opacity: 0.3;
+      animation: drift 120s linear infinite;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 3px;
+      height: 80px;
+      background: linear-gradient(0deg, white, transparent);
+      opacity: 0.7;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    @keyframes drift {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100px); }
+    }
+
+    @keyframes shoot {
+      0% { transform: translate(0, 0) rotate(45deg); opacity: 1; }
+      100% { transform: translate(300px, -300px) rotate(45deg); opacity: 0; }
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .parallax {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      animation: typing 3s steps(30, end), blink 0.8s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #00ffff;
+      width: 0;
+      margin: 0 auto;
+    }
+
+    .start-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin-top: 2rem;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      box-shadow: 0 0 15px #00ffff;
+      animation: float 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .start-button:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 25px #fff;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    section {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    }
+
+    section h2 {
+      color: #00ffff;
+    }
+
+    p, a, li {
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent }
+      50% { border-color: #00ffff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="overlay"></div>
+
+  <div class="parallax">
+    <header>
+      <h1>INIo — Game Developer</h1>
+      <div class="start-button">Start</div>
+    </header>
+
+    <section id="general">
+      <h2>About Me</h2>
+      <p>Hey! I'm <strong>Rohan</strong>, also known as <strong>INIo</strong>. I'm 13 and I love making games. Anytime, anyhow — I can whip up a basic game and help others too.</p>
+    </section>
+
+    <section id="engines">
+      <h2>What I Work With</h2>
+      <ul>
+        <li><strong>Godot Engine</strong></li>
+        <li><strong>Unity</strong></li>
+        <li><strong>Thunder Engine</strong></li>
+        <li><strong>GDScript</strong> + more coding languages</li>
+      </ul>
+    </section>
+
+    <section id="helped-by">
+      <h2>People Who Help Me</h2>
+      <ul>
+        <li>Phantom — animations</li>
+        <li>Mich... — frameworks</li>
+        <li><strong>Want to be the one?</strong> You can join me!</li>
+      </ul>
+    </section>
+
+    <section id="ai">
+      <h2>AI I Trained</h2>
+      <p>I’ve even worked with AI! Check out one of the AIs I trained on <a href="https://ymi2.ownai.com/" target="_blank">YMI2</a>. It’s pretty cool and still learning more!</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Need help? Want to build a game together? <a href="mailto:isuke553@gmail.com">Email me</a> anytime.</p>
+    </section>
+
+    <section id="social">
+      <h2>Follow Me</h2>
+      <ul>
+        <li>Instagram: Not currently available – but I’ve got <strong>758 followers!</strong></li>
+        <li>YouTube: <a href="https://youtube.com/@kd_INIo" target="_blank">@kd_INIo</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = `${Math.random() * 2 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      starsContainer.appendChild(star);
+    }
+
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star-layer2';
+      star.style.width = `${Math.random() * 1.5 + 0.5}px`;
+      star.style.height = star.style.width;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      starsContainer.appendChild(star);
+    }
+
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star-layer3';
+      star.style.width = `${Math.random() * 1 + 0.3}px`;
+      star.style.height = star.style.width;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      starsContainer.appendChild(star);
+    }
+
+    setInterval(() => {
+      const shootingStar = document.createElement('div');
+      shootingStar.className = 'shooting-star';
+      shootingStar.style.top = `${Math.random() * 80 + 10}%`;
+      shootingStar.style.left = `${Math.random() * 80 + 10}%`;
+      starsContainer.appendChild(shootingStar);
+      setTimeout(() => shootingStar.remove(), 1000);
+    }, 8000);
+  </script>
+</body>
+</html>
